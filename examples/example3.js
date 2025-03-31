@@ -14,7 +14,7 @@ const htmlContent = `
 
 const server = http.createServer((req, res) => {
     console.log("Αρχικά δημιουργούμε αρχείο index.html με περιεχόμενα htmlContent");
-    fs.writeFile('./index.html',htmlContent, err => {
+    fs.writeFile('index.html',htmlContent, err => {
         if(err) {
             console.log("Problem in writting file")
         }else {

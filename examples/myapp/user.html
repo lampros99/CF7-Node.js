@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Data</title>
+</head>
+<body>
+    <form action="/user" method="POST">
+        <input type="text" name="firstname" placeholder="Enter your first name" />
+        <input type="text" name="lastname" placeholder="Enter your last name" />
+        <input type="number" name="age" placeholder="Enter your age" />
+        <input type="email" name="email" placeholder="Enter your email" />
+        <select name="sex">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+        </select>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
