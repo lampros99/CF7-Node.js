@@ -20,7 +20,7 @@ app.get('/', (req, res)=>{
   res.send("This is the home page");
 });
 
-app.post('/user', (req, res) => {
+app.post('/user', logger, (req, res) => {
   let data = req.body;
   let username = req.body.username;
   let email = req.body.email;
