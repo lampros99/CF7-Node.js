@@ -64,9 +64,10 @@ exports.create = async(req, res) => {
 
 exports.update = async(req, res) => {
   const username = req.body.username;
+  const product_id = req.body.product._id;
+  const product_quantity = req.body.product.quantity;
 
   console.log("Update user with username", username);
-
   const updateUser = {
     name: req.body.name,
     surname: req.body.surname,
@@ -76,7 +77,6 @@ exports.update = async(req, res) => {
       road: req.body.address.road
     }
   };
-
   try {
     const result = await User.findOneAndUpdate({username: username}, updateUser, {new:true});
     res.status(200).json({status:true, data:result});

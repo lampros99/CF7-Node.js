@@ -1,4 +1,4 @@
-const { request } = require('../app');
+// const { request } = require('../app');
 const User = require('../models/user.model');
 
 exports.findAll = async(req, res) => {
@@ -11,7 +11,6 @@ exports.findAll = async(req, res) => {
         console.log("Problem in finding all users products")
         res.status(400).json({status:false, data: err});
     }
-
 }
 
 exports.findOne = async(req, res) => {
@@ -21,7 +20,7 @@ exports.findOne = async(req, res) => {
     try{
         const result = await User.findOne({username:username}, {username:1, products:1, _id:0});
         res.status(200).json({status:true, data: result});
-
+        console.log(result) //new feat
     }catch(err){
         console.log("Problem in finding user's products", err);
         res.status(400).json({status:false, data:err});
@@ -43,6 +42,7 @@ exports.create = async(req, res) => {
             }
         );
         res.status(200).json({status: true, data: result});
+        console.log("Received data:", req.body) //New feat
     }catch (err) {
         console.log("Problem in inserting product");
         res.status(400).json({status:false, data: err});
@@ -53,22 +53,24 @@ exports.update = async(req, res) => {
     const username = req.body.username;
     const product_id = req.body.product._id;
     const product_quantity = req.body.product.quantity;
+  
+    console.log("Update product for username:", username);
 
-    console.log("Update product for username:". username);
-
+    console.log("Product: " + req.body)
     try {
-        const result = await User.updateOne(
-            {username:username, "products._id": product._id},
-            { $set: {
-                "products.?.quantity": product_quantity
-            }}
-        );
-        res.status(200).json({status: true, data:result});
-    }catch(err){
-        console.log("Problem in updating product", err);
-        res.status(400).json({status:false, data:err});
+      const result = await User.updateOne(
+        { username:username, "products._id": product_id },
+        { $set: {
+            "products.$.quantity": product_quantity
+        }},
+        {new:true}
+      );
+      res.status(200).json({status: true, data: result});
+    } catch (err) {
+      console.log("Problem in updating product", err);
+      res.status(400).json({status: false, data: err});
     }
-}
+  }
 
 exports.delete = async(req, res) => {
     const username = req.params.username;
@@ -111,14 +113,17 @@ exports.stats1 = async(req, res) => {
                 $group:{
                     _id:{username: "$username", product: "$products.product"},
                     totalAmount: {
-                        $sum:{$multiply: ["$product.cost", "$product.quantity"]}
+                        $sum:{$multiply: ["$products.cost", "$products.quantity"]}
                     },
                     count:{$sum:1}
                 }
             },
             {$sort:{"_id.username":1, "_id.product":1}}
-        ])
+        ]);
+        res.status(200).json({status:true, data:result});
     }catch(err){
-        console.log(err);
+        console.log("Problem in stats1", err);
+        res.status(400).json({status: false, data: err});
     }
 }
+
