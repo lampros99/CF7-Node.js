@@ -7,6 +7,7 @@ exports.findAll = async(req, res) => {
     try{
         const result = await User.find({}, {username:1, products:1, _id:0});
         res.status(200).json({status:true, data:result});
+        console.log(result)
     }catch(err) {
         console.log("Problem in finding all users products")
         res.status(400).json({status:false, data: err});
