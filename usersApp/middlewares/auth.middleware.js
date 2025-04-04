@@ -11,10 +11,9 @@ function verifyToken(req, res, next) {
   }
 
   const result = authService.verifyAccessToken(token);
-
-  const secret = process.env.TOKEN_SECRET;
   
   if (result.verified) {
+
     const decoded = jwt.verify(token, secret);
     req.user = decoded;
     console.log("Decoded", decoded)
@@ -41,4 +40,4 @@ function verifyRoles(allowedRole) {
   }
 }
 
-module.exports = { verifyToken };
+module.exports = { verifyToken, verifyRoles };
