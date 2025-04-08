@@ -13,10 +13,7 @@ function verifyToken(req, res, next) {
   const result = authService.verifyAccessToken(token);
   
   if (result.verified) {
-
-    const decoded = jwt.verify(token, secret);
-    req.user = decoded;
-    console.log("Decoded", decoded)
+    req.user = result.data;
     next();
   } else {
     return res.status(403).json({status: false, data: result.data})
