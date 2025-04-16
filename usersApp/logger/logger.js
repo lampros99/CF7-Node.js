@@ -33,6 +33,8 @@ const winston = require('winston');
 //     transports: [new transports.Console()]
 // })
 
+//for jest
+// require('dotenv').config();
 
 
 // Third Example
@@ -81,7 +83,7 @@ const logger = createLogger({
         ),
         new transports.MongoDB({
             level: "error",
-            db: process.env.MONGODB_URL,
+            db: process.env.MONGODB_URI,
             collection: 'server_logs',
             format: format.combine(
                 format.timestamp(),
