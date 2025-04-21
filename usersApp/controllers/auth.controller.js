@@ -29,3 +29,42 @@ exports.login = async(req, res) => {
         res.status(400).json({status: false, data: err})
     }
 }
+
+// exports.googleLogin = async(req, res) => {
+//   const code = req.query.code;
+
+//   if (!code) {
+//     res.status(400).json({status: false, data: "Authorization code is missing"});
+//   } else {
+//     let user = await authService.googleAuth(code);
+//     if (user && !user.error){
+//       console.log(">>>", user);
+//       res.status(200).json({status: true, data: user});
+//     } else {
+//       res.status(400).json({status:false, data: "Problem in Google Login"});
+//     }
+//   }
+// }
+
+exports.googleLogin = async (req, res) => {
+  const code = req.query.code;
+
+  if (!code) {
+    res.status(400).json({ status: false, data: "Authorization code is missing" });
+  } else {
+    try {
+      const user = await authService.googleAuth(code);
+
+      if (user && !user.error) {
+        console.log(">>> Google user:", user);
+        res.status(200).json({ status: true, data: user });
+      } else {
+        console.error("Google auth error:", user?.error);
+        res.status(400).json({ status: false, data: user.error || "Problem in Google Login" });
+      }
+    } catch (err) {
+      console.error("Unexpected error in controller:", err.response?.data || err.message);
+      res.status(500).json({ status: false, data: "Internal server error" });
+    }
+  }
+};
