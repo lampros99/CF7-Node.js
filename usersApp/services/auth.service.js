@@ -2,10 +2,9 @@ const jwt = require('jsonwebtoken');
 const { OAuth2Client } = require('google-auth-library');
 
 
- 
 function generateAccessToken(user){
 
-  console.log("Auth Service", user);
+  // console.log("Auth Service", user);
 
   const payload = {
     username: user.username,
@@ -27,7 +26,7 @@ function verifyAccessToken(token){
   try {
     const payload = jwt.verify(token, secret);
                   
-    console.log("VerifyToken", payload);
+    // console.log("VerifyToken", payload);
     console.log(token)
     return { verified: true, data: payload }
   } catch (err) {
