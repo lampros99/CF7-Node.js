@@ -10,7 +10,7 @@ let addressSchema = new Schema({
 let phoneSchema = new Schema({
     type: {type: String},
     number: {type: String}
-}, {_id: false});     
+},{_id: false});     
 
 let productsSchema = new Schema({
     product: {type: String},
