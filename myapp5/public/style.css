@@ -1,0 +1,132 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  html, body {
+    height: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #4a8cf7, #0059d6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  #login-container {
+    background: white;
+    padding: 32px 28px;
+    width: 100%;
+    max-width: 350px;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    display: flex;
+    flex-direction: column;
+  }
+  h1 {
+    text-align: center;
+    margin-bottom: 24px;
+    font-weight: 700;
+    color: #0059d6;
+    user-select: none;
+  }
+  label {
+    font-size: 0.9rem;
+    margin-bottom: 6px;
+    color: #222;
+    user-select: none;
+  }
+  input[type="text"], input[type="password"] {
+    padding: 12px 14px;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 1.8px solid #ccc;
+    margin-bottom: 18px;
+    transition: border-color 0.3s ease;
+    outline: none;
+    width: 100%;
+  }
+  input[type="text"]:focus, input[type="password"]:focus {
+    border-color: #4a8cf7;
+    box-shadow: 0 0 8px rgba(74, 140, 247, 0.6);
+  }
+  #error-msg {
+    color: #d93025;
+    font-size: 0.85rem;
+    margin-bottom: 12px;
+    min-height: 20px;
+    user-select: none;
+  }
+  button {
+    font-weight: 700;
+    border-radius: 12px;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.3s ease;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 16px;
+    border: none;
+  }
+  #submitBtn {
+    background: #4a8cf7;
+    color: white;
+    width: 100%;
+    margin-bottom: 14px;
+  }
+  #submitBtn:disabled {
+    background: #b0c7fc;
+    cursor: not-allowed;
+  }
+  #submitBtn:not(:disabled):hover {
+    background: #0059d6;
+  }
+  .oauth-btn {
+    width: 100%;
+    margin-bottom: 12px;
+    color: white;
+    font-weight: 700;
+    padding-left: 44px;
+    position: relative;
+  }
+  .oauth-btn svg {
+    position: absolute;
+    left: 12px;
+    width: 20px;
+    height: 20px;
+  }
+  #githubBtn {
+    background: #333;
+  }
+  #githubBtn:hover {
+    background: #242424;
+  }
+  #googleBtn {
+    background: #db4437;
+  }
+  #googleBtn:hover {
+    background: #b7362b;
+  }
+  #forgotPwdBtn {
+    background: transparent;
+    color: #4a8cf7;
+    font-weight: 600;
+    padding: 0;
+    margin: 6px auto 0;
+    align-self: center;
+    width: auto;
+    border: none;
+    text-decoration: underline;
+    font-size: 0.9rem;
+  }
+  #forgotPwdBtn:hover,
+  #forgotPwdBtn:focus {
+    color: #0059d6;
+    outline: none;
+  }
+  @media (max-width: 380px) {
+    #login-container {
+      margin: 8px;
+      padding: 28px 20px;
+    }
+  }
