@@ -1,4 +1,4 @@
-const form = document.getElementById('loginForm');
+    const form = document.getElementById('loginForm');
     const username = document.getElementById('username');
     const password = document.getElementById('password');
     const errorMsg = document.getElementById('error-msg');
@@ -40,6 +40,7 @@ const form = document.getElementById('loginForm');
         form.reset();
         submitBtn.disabled = true;
         errorMsg.textContent = '';
+        window.location.href='secret.html';
       } else {
         errorMsg.textContent = 'Invalid username/email or password.';
         password.focus();
